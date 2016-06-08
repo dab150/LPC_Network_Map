@@ -1,0 +1,9 @@
+<Rooms>
+	<Room>
+		<name>Lunchroom</name>
+		<xcoordmin>15</xcoordmin>
+		<xcoordmax>25</xcoordmax>
+		<ycoordmin>60</ycoordmin>
+		<ycoordmax>75</ycoordmax>
+	</Room>
+</Rooms>
