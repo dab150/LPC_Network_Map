@@ -119,11 +119,11 @@ namespace LPC_Network_Map
 
         public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
         {
-            bool exists = File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
+            bool exists = File.Exists(filename); //File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
 
             if (exists)
             {
-                using (XmlTextReader xmlreader = new XmlTextReader(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename))
+                using (XmlTextReader xmlreader = new XmlTextReader(filename))
                 {
                     while (xmlreader.Read())
                     {
@@ -190,19 +190,34 @@ namespace LPC_Network_Map
         //load data from excel file into datagrid
         void loadDeviceData ()
         {
-            String name = "DeviceList";
-            String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-                            Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Workstation Inventory.xlsx" +
-                            ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+            try
+            {
+                //first access file in resources and save it as a temp file
+                string sPath = Path.GetTempFileName();
+                File.WriteAllBytes(sPath, Properties.Resources.Workstation_Inventory);
+                MessageBox.Show("WriteAllBytes");
 
-            OleDbConnection con = new OleDbConnection(constr);
-            OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-            con.Open();
+                String name = "DeviceList";
 
-            OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-            DataTable data = new DataTable();
-            sda.Fill(data);
-            dataGridDeviceList.DataSource = data;
+                String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+                                sPath +
+                                //Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Workstation Inventory.xlsx" +
+                                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+
+                MessageBox.Show(constr);
+
+                OleDbConnection con = new OleDbConnection(constr);
+                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+                con.Open();
+
+                MessageBox.Show("Open");
+
+                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                DataTable data = new DataTable();
+                sda.Fill(data);
+                dataGridDeviceList.DataSource = data;
+            }
+            catch (Exception e) { MessageBox.Show("Error loading Workstation Inventory.xlsx: " + e.Message); }
         }
     }
 }

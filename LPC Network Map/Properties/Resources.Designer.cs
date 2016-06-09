@@ -91,19 +91,12 @@ namespace LPC_Network_Map.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Rooms&gt;
-        ///	&lt;Room&gt;
-        ///		&lt;name&gt;Lunchroom&lt;/name&gt;
-        ///		&lt;xcoordmin&gt;15&lt;/xcoordmin&gt;
-        ///		&lt;xcoordmax&gt;25&lt;/xcoordmax&gt;
-        ///		&lt;ycoordmin&gt;60&lt;/ycoordmin&gt;
-        ///		&lt;ycoordmax&gt;75&lt;/ycoordmax&gt;
-        ///	&lt;/Room&gt;
-        ///&lt;/Rooms&gt;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string LPC_Room_Computer_List {
+        internal static byte[] Workstation_Inventory {
             get {
-                return ResourceManager.GetString("LPC_Room_Computer_List", resourceCulture);
+                object obj = ResourceManager.GetObject("Workstation_Inventory", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
