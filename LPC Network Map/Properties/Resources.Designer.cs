@@ -91,6 +91,16 @@ namespace LPC_Network_Map.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _2ndFloorWorkstations {
+            get {
+                object obj = ResourceManager.GetObject("_2ndFloorWorkstations", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Workstation_Inventory {

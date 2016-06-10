@@ -38,18 +38,15 @@ namespace LPC_Network_Map
             loadDeviceData();
         }
 
-        private void chkRoomLabels_CheckedChanged(object sender, EventArgs e)
+
+        private void firstFloorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(chkRoomLabels.Checked)
-            {
-                //show room labels
-                pictureBox1.Image = (Properties.Resources._1stFloorRoomLabels);
-            }
-            else
-            {
-                //hide room labels
-                pictureBox1.Image = (Properties.Resources._1stFloorWorkstations);
-            }
+            pictureBox1.Image = (Properties.Resources._1stFloorWorkstations);
+        }
+
+        private void secondFloorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = (Properties.Resources._2ndFloorWorkstations);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -63,15 +60,15 @@ namespace LPC_Network_Map
             statusClickLocation.Text = MapClickLocation.ToString();
 
             //determine what room we are in
-            xmlRoom(false);
+            //xmlRoom(false);
 
-            foreach(var room in RoomList)
-            {
-                if (MapClickLocation.X > room.xcoordmin && MapClickLocation.X < room.xcoordmax && MapClickLocation.Y > room.ycoordmin && MapClickLocation.Y < room.ycoordmax)
-                {
-                    statusClickLocation.Text = MapClickLocation.ToString() + " " + room.name;
-                }
-            }
+            //foreach(var room in RoomList)
+            //{
+            //    if (MapClickLocation.X > room.xcoordmin && MapClickLocation.X < room.xcoordmax && MapClickLocation.Y > room.ycoordmin && MapClickLocation.Y < room.ycoordmax)
+            //    {
+            //        statusClickLocation.Text = MapClickLocation.ToString() + " " + room.name;
+            //    }
+            //}
 
             //determine what device we just clicked and populate the information fields
             foreach (DataGridViewRow row in dataGridDeviceList.Rows)
@@ -117,63 +114,63 @@ namespace LPC_Network_Map
             }
         }
 
-        public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
-        {
-            bool exists = File.Exists(filename); //File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
+        //public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
+        //{
+        //    bool exists = File.Exists(filename); //File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
 
-            if (exists)
-            {
-                using (XmlTextReader xmlreader = new XmlTextReader(filename))
-                {
-                    while (xmlreader.Read())
-                    {
-                        xmlreader.MoveToElement();
-                        switch (xmlreader.Name)
-                        {
-                            case "Room":
-                                {
-                                    RoomInfo room = new RoomInfo();
+        //    if (exists)
+        //    {
+        //        using (XmlTextReader xmlreader = new XmlTextReader(filename))
+        //        {
+        //            while (xmlreader.Read())
+        //            {
+        //                xmlreader.MoveToElement();
+        //                switch (xmlreader.Name)
+        //                {
+        //                    case "Room":
+        //                        {
+        //                            RoomInfo room = new RoomInfo();
 
-                                    while (xmlreader.Read())
-                                    {
-                                        bool dobreak = false;
-                                        xmlreader.MoveToElement();
-                                        switch (xmlreader.Name)
-                                        {
-                                            case "name":
-                                                room.name = xmlreader.ReadString();
-                                                break;
-                                            case "xcoordmin":
-                                                room.xcoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-                                                break;
-                                            case "xcoordmax":
-                                                room.xcoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-                                                break;
-                                            case "ycoordmin":
-                                                room.ycoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-                                                break;
-                                            case "ycoordmax":
-                                                room.ycoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-                                                // populate list with this room once we have all of the info. This method requires the xml info to be in order, with ycoordmax being last
-                                                RoomList.Add(room);
-                                                break;
-                                        }
-                                        if (dobreak)
-                                            break;
-                                    }
-                                    string temp = xmlreader.ReadString();
-                                }
-                                break;
+        //                            while (xmlreader.Read())
+        //                            {
+        //                                bool dobreak = false;
+        //                                xmlreader.MoveToElement();
+        //                                switch (xmlreader.Name)
+        //                                {
+        //                                    case "name":
+        //                                        room.name = xmlreader.ReadString();
+        //                                        break;
+        //                                    case "xcoordmin":
+        //                                        room.xcoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "xcoordmax":
+        //                                        room.xcoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "ycoordmin":
+        //                                        room.ycoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "ycoordmax":
+        //                                        room.ycoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        // populate list with this room once we have all of the info. This method requires the xml info to be in order, with ycoordmax being last
+        //                                        RoomList.Add(room);
+        //                                        break;
+        //                                }
+        //                                if (dobreak)
+        //                                    break;
+        //                            }
+        //                            string temp = xmlreader.ReadString();
+        //                        }
+        //                        break;
 
-                            default:
-                                if (xmlreader.Name == "") // line feeds
-                                    break;
-                                break;
-                        }
-                    }
-                }
-            }
-        }
+        //                    default:
+        //                        if (xmlreader.Name == "") // line feeds
+        //                            break;
+        //                        break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         private void deviceListToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -195,7 +192,6 @@ namespace LPC_Network_Map
                 //first access file in resources and save it as a temp file
                 string sPath = Path.GetTempFileName();
                 File.WriteAllBytes(sPath, Properties.Resources.Workstation_Inventory);
-                MessageBox.Show("WriteAllBytes");
 
                 String name = "DeviceList";
 
@@ -204,13 +200,9 @@ namespace LPC_Network_Map
                                 //Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Workstation Inventory.xlsx" +
                                 ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
 
-                MessageBox.Show(constr);
-
                 OleDbConnection con = new OleDbConnection(constr);
                 OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
                 con.Open();
-
-                MessageBox.Show("Open");
 
                 OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
                 DataTable data = new DataTable();

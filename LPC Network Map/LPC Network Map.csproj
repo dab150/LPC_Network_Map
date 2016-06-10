@@ -129,15 +129,12 @@
     <Content Include="Resources\1st Floor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\1stFloorWorkstations.png" />
+    <None Include="Resources\2ndFloorWorkstations.PNG" />
     <Content Include="Resources\Workstation Inventory.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1stFloor.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\1stFloorWorkstations.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
