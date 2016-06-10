@@ -68,8 +68,13 @@
             this.workstationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.viewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deviceMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deviceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.firstFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPanel.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDeviceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -396,6 +401,9 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewToolStripMenuItem1,
+            this.LocationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1156, 24);
@@ -481,6 +489,52 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // viewToolStripMenuItem1
+            // 
+            this.viewToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deviceMapToolStripMenuItem,
+            this.deviceListToolStripMenuItem1});
+            this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
+            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem1.Text = "View";
+            // 
+            // deviceMapToolStripMenuItem
+            // 
+            this.deviceMapToolStripMenuItem.Name = "deviceMapToolStripMenuItem";
+            this.deviceMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deviceMapToolStripMenuItem.Text = "Device Map";
+            this.deviceMapToolStripMenuItem.Click += new System.EventHandler(this.mapToolStripMenuItem_Click);
+            // 
+            // deviceListToolStripMenuItem1
+            // 
+            this.deviceListToolStripMenuItem1.Name = "deviceListToolStripMenuItem1";
+            this.deviceListToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deviceListToolStripMenuItem1.Text = "Device List";
+            this.deviceListToolStripMenuItem1.Click += new System.EventHandler(this.deviceListToolStripMenuItem_Click);
+            // 
+            // LocationToolStripMenuItem
+            // 
+            this.LocationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.firstFloorOfficeToolStripMenuItem,
+            this.secondFloorOfficeToolStripMenuItem});
+            this.LocationToolStripMenuItem.Name = "LocationToolStripMenuItem";
+            this.LocationToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.LocationToolStripMenuItem.Text = "Location";
+            // 
+            // firstFloorOfficeToolStripMenuItem
+            // 
+            this.firstFloorOfficeToolStripMenuItem.Name = "firstFloorOfficeToolStripMenuItem";
+            this.firstFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.firstFloorOfficeToolStripMenuItem.Text = "First Floor Office";
+            this.firstFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.firstFloorToolStripMenuItem_Click);
+            // 
+            // secondFloorOfficeToolStripMenuItem
+            // 
+            this.secondFloorOfficeToolStripMenuItem.Name = "secondFloorOfficeToolStripMenuItem";
+            this.secondFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.secondFloorOfficeToolStripMenuItem.Text = "Second Floor Office";
+            this.secondFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.secondFloorToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,8 +550,6 @@
             this.Text = "Network Map";
             this.optionPanel.ResumeLayout(false);
             this.optionPanel.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDeviceList)).EndInit();
@@ -548,6 +600,12 @@
         private System.Windows.Forms.ToolStripMenuItem printersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem workstationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deviceMapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deviceListToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem LocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem firstFloorOfficeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secondFloorOfficeToolStripMenuItem;
     }
 }
 
