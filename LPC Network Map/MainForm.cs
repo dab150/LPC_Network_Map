@@ -17,6 +17,7 @@ namespace LPC_Network_Map
     {
         //variables
         Point MapClickLocation;
+        String VisibleArea = "1st Floor";
 
         //structures
         public struct RoomInfo
@@ -42,11 +43,18 @@ namespace LPC_Network_Map
         private void firstFloorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = (Properties.Resources._1stFloorWorkstations);
+            VisibleArea = "1st Floor";
+            firstFloorOfficeToolStripMenuItem.Checked = true;
+            secondFloorOfficeToolStripMenuItem.Checked = false;
         }
 
         private void secondFloorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = (Properties.Resources._2ndFloorWorkstations);
+            VisibleArea = "2nd Floor";
+            firstFloorOfficeToolStripMenuItem.Checked = false;
+            secondFloorOfficeToolStripMenuItem.Checked = true;
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -57,7 +65,7 @@ namespace LPC_Network_Map
             MapClickLocation = new Point(((int)(pictureBox1.PointToClient(Cursor.Position).X * (HorRes / pictureBox1.Width))),
                                           (int)(pictureBox1.PointToClient(Cursor.Position).Y * (VerRes / pictureBox1.Height)));
 
-            statusClickLocation.Text = MapClickLocation.ToString();
+            toolStripStatusLabel.Text = MapClickLocation.ToString();
 
             //determine what room we are in
             //xmlRoom(false);
@@ -75,11 +83,13 @@ namespace LPC_Network_Map
             {
                 int deviceXCoord = Convert.ToInt16(row.Cells["XCoord"].Value);
                 int deviceYCoord = Convert.ToInt16(row.Cells["YCoord"].Value);
+                String deviceArea = Convert.ToString(row.Cells["Area"].Value);
 
                 int precisionConstant = 2; //this allows a margin of error for where the user clicks so it will still register click if it isn't EXACTLY on the device
 
                 if ((deviceXCoord >= MapClickLocation.X - precisionConstant &&  deviceXCoord <= MapClickLocation.X + precisionConstant) &&
-                    (deviceYCoord >= MapClickLocation.Y - precisionConstant && deviceYCoord <= MapClickLocation.Y + precisionConstant))
+                    (deviceYCoord >= MapClickLocation.Y - precisionConstant && deviceYCoord <= MapClickLocation.Y + precisionConstant) &&
+                    (deviceArea == VisibleArea))
                 {
                     //populate fields
                     txtDeviceName.Text = row.Cells["Device Name"].Value.ToString();

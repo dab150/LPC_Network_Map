@@ -58,6 +58,12 @@
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.viewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deviceMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deviceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.firstFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridDeviceList = new System.Windows.Forms.DataGridView();
             this.areaSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.firstFloorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,14 +73,10 @@
             this.printersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workstationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.viewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.deviceMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deviceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.LocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.firstFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secondFloorOfficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPanel.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDeviceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -129,7 +131,7 @@
             this.txtArchitecture.Location = new System.Drawing.Point(109, 349);
             this.txtArchitecture.Name = "txtArchitecture";
             this.txtArchitecture.ReadOnly = true;
-            this.txtArchitecture.Size = new System.Drawing.Size(131, 22);
+            this.txtArchitecture.Size = new System.Drawing.Size(157, 22);
             this.txtArchitecture.TabIndex = 23;
             this.txtArchitecture.Text = "";
             this.txtArchitecture.WordWrap = false;
@@ -141,7 +143,7 @@
             this.txtMemory.Location = new System.Drawing.Point(109, 321);
             this.txtMemory.Name = "txtMemory";
             this.txtMemory.ReadOnly = true;
-            this.txtMemory.Size = new System.Drawing.Size(131, 22);
+            this.txtMemory.Size = new System.Drawing.Size(157, 22);
             this.txtMemory.TabIndex = 22;
             this.txtMemory.Text = "";
             this.txtMemory.WordWrap = false;
@@ -153,7 +155,7 @@
             this.txtProcessor.Location = new System.Drawing.Point(109, 293);
             this.txtProcessor.Name = "txtProcessor";
             this.txtProcessor.ReadOnly = true;
-            this.txtProcessor.Size = new System.Drawing.Size(131, 22);
+            this.txtProcessor.Size = new System.Drawing.Size(157, 22);
             this.txtProcessor.TabIndex = 21;
             this.txtProcessor.Text = "";
             this.txtProcessor.WordWrap = false;
@@ -165,7 +167,7 @@
             this.txtOS.Location = new System.Drawing.Point(109, 265);
             this.txtOS.Name = "txtOS";
             this.txtOS.ReadOnly = true;
-            this.txtOS.Size = new System.Drawing.Size(131, 22);
+            this.txtOS.Size = new System.Drawing.Size(157, 22);
             this.txtOS.TabIndex = 20;
             this.txtOS.Text = "";
             this.txtOS.WordWrap = false;
@@ -177,7 +179,7 @@
             this.txtDepartment.Location = new System.Drawing.Point(109, 237);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.ReadOnly = true;
-            this.txtDepartment.Size = new System.Drawing.Size(131, 22);
+            this.txtDepartment.Size = new System.Drawing.Size(157, 22);
             this.txtDepartment.TabIndex = 19;
             this.txtDepartment.Text = "";
             this.txtDepartment.WordWrap = false;
@@ -189,7 +191,7 @@
             this.txtSerial.Location = new System.Drawing.Point(109, 209);
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.ReadOnly = true;
-            this.txtSerial.Size = new System.Drawing.Size(131, 22);
+            this.txtSerial.Size = new System.Drawing.Size(157, 22);
             this.txtSerial.TabIndex = 18;
             this.txtSerial.Text = "";
             this.txtSerial.WordWrap = false;
@@ -201,7 +203,7 @@
             this.txtType.Location = new System.Drawing.Point(109, 179);
             this.txtType.Name = "txtType";
             this.txtType.ReadOnly = true;
-            this.txtType.Size = new System.Drawing.Size(131, 22);
+            this.txtType.Size = new System.Drawing.Size(157, 22);
             this.txtType.TabIndex = 17;
             this.txtType.Text = "";
             this.txtType.WordWrap = false;
@@ -213,7 +215,7 @@
             this.txtModel.Location = new System.Drawing.Point(109, 151);
             this.txtModel.Name = "txtModel";
             this.txtModel.ReadOnly = true;
-            this.txtModel.Size = new System.Drawing.Size(131, 22);
+            this.txtModel.Size = new System.Drawing.Size(157, 22);
             this.txtModel.TabIndex = 16;
             this.txtModel.Text = "";
             this.txtModel.WordWrap = false;
@@ -225,7 +227,7 @@
             this.txtMake.Location = new System.Drawing.Point(109, 123);
             this.txtMake.Name = "txtMake";
             this.txtMake.ReadOnly = true;
-            this.txtMake.Size = new System.Drawing.Size(131, 22);
+            this.txtMake.Size = new System.Drawing.Size(157, 22);
             this.txtMake.TabIndex = 15;
             this.txtMake.Text = "";
             this.txtMake.WordWrap = false;
@@ -237,7 +239,7 @@
             this.txtUser.Location = new System.Drawing.Point(109, 95);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
-            this.txtUser.Size = new System.Drawing.Size(131, 22);
+            this.txtUser.Size = new System.Drawing.Size(157, 22);
             this.txtUser.TabIndex = 14;
             this.txtUser.Text = "";
             this.txtUser.WordWrap = false;
@@ -249,7 +251,7 @@
             this.txtDeviceName.Location = new System.Drawing.Point(109, 67);
             this.txtDeviceName.Name = "txtDeviceName";
             this.txtDeviceName.ReadOnly = true;
-            this.txtDeviceName.Size = new System.Drawing.Size(131, 22);
+            this.txtDeviceName.Size = new System.Drawing.Size(157, 22);
             this.txtDeviceName.TabIndex = 13;
             this.txtDeviceName.Text = "";
             this.txtDeviceName.WordWrap = false;
@@ -367,6 +369,8 @@
             // statusStrip
             // 
             this.statusStrip.AutoSize = false;
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 455);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1156, 22);
@@ -409,6 +413,54 @@
             this.menuStrip1.Size = new System.Drawing.Size(1156, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // viewToolStripMenuItem1
+            // 
+            this.viewToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deviceMapToolStripMenuItem,
+            this.deviceListToolStripMenuItem1});
+            this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
+            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem1.Text = "View";
+            // 
+            // deviceMapToolStripMenuItem
+            // 
+            this.deviceMapToolStripMenuItem.Name = "deviceMapToolStripMenuItem";
+            this.deviceMapToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.deviceMapToolStripMenuItem.Text = "Device Map";
+            this.deviceMapToolStripMenuItem.Click += new System.EventHandler(this.mapToolStripMenuItem_Click);
+            // 
+            // deviceListToolStripMenuItem1
+            // 
+            this.deviceListToolStripMenuItem1.Name = "deviceListToolStripMenuItem1";
+            this.deviceListToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
+            this.deviceListToolStripMenuItem1.Text = "Device List";
+            this.deviceListToolStripMenuItem1.Click += new System.EventHandler(this.deviceListToolStripMenuItem_Click);
+            // 
+            // LocationToolStripMenuItem
+            // 
+            this.LocationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.firstFloorOfficeToolStripMenuItem,
+            this.secondFloorOfficeToolStripMenuItem});
+            this.LocationToolStripMenuItem.Name = "LocationToolStripMenuItem";
+            this.LocationToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.LocationToolStripMenuItem.Text = "Area";
+            // 
+            // firstFloorOfficeToolStripMenuItem
+            // 
+            this.firstFloorOfficeToolStripMenuItem.Checked = true;
+            this.firstFloorOfficeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.firstFloorOfficeToolStripMenuItem.Name = "firstFloorOfficeToolStripMenuItem";
+            this.firstFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.firstFloorOfficeToolStripMenuItem.Text = "First Floor Office";
+            this.firstFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.firstFloorToolStripMenuItem_Click);
+            // 
+            // secondFloorOfficeToolStripMenuItem
+            // 
+            this.secondFloorOfficeToolStripMenuItem.Name = "secondFloorOfficeToolStripMenuItem";
+            this.secondFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.secondFloorOfficeToolStripMenuItem.Text = "Second Floor Office";
+            this.secondFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.secondFloorToolStripMenuItem_Click);
             // 
             // dataGridDeviceList
             // 
@@ -474,6 +526,11 @@
             this.serversToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serversToolStripMenuItem.Text = "Servers";
             // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -488,52 +545,6 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // viewToolStripMenuItem1
-            // 
-            this.viewToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deviceMapToolStripMenuItem,
-            this.deviceListToolStripMenuItem1});
-            this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
-            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem1.Text = "View";
-            // 
-            // deviceMapToolStripMenuItem
-            // 
-            this.deviceMapToolStripMenuItem.Name = "deviceMapToolStripMenuItem";
-            this.deviceMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deviceMapToolStripMenuItem.Text = "Device Map";
-            this.deviceMapToolStripMenuItem.Click += new System.EventHandler(this.mapToolStripMenuItem_Click);
-            // 
-            // deviceListToolStripMenuItem1
-            // 
-            this.deviceListToolStripMenuItem1.Name = "deviceListToolStripMenuItem1";
-            this.deviceListToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.deviceListToolStripMenuItem1.Text = "Device List";
-            this.deviceListToolStripMenuItem1.Click += new System.EventHandler(this.deviceListToolStripMenuItem_Click);
-            // 
-            // LocationToolStripMenuItem
-            // 
-            this.LocationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.firstFloorOfficeToolStripMenuItem,
-            this.secondFloorOfficeToolStripMenuItem});
-            this.LocationToolStripMenuItem.Name = "LocationToolStripMenuItem";
-            this.LocationToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.LocationToolStripMenuItem.Text = "Location";
-            // 
-            // firstFloorOfficeToolStripMenuItem
-            // 
-            this.firstFloorOfficeToolStripMenuItem.Name = "firstFloorOfficeToolStripMenuItem";
-            this.firstFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.firstFloorOfficeToolStripMenuItem.Text = "First Floor Office";
-            this.firstFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.firstFloorToolStripMenuItem_Click);
-            // 
-            // secondFloorOfficeToolStripMenuItem
-            // 
-            this.secondFloorOfficeToolStripMenuItem.Name = "secondFloorOfficeToolStripMenuItem";
-            this.secondFloorOfficeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.secondFloorOfficeToolStripMenuItem.Text = "Second Floor Office";
-            this.secondFloorOfficeToolStripMenuItem.Click += new System.EventHandler(this.secondFloorToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -550,6 +561,8 @@
             this.Text = "Network Map";
             this.optionPanel.ResumeLayout(false);
             this.optionPanel.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDeviceList)).EndInit();
@@ -606,6 +619,7 @@
         private System.Windows.Forms.ToolStripMenuItem LocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem firstFloorOfficeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem secondFloorOfficeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 
