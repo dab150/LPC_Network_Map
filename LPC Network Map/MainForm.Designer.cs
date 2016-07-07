@@ -473,6 +473,9 @@
             // 
             // dataGridDeviceList
             // 
+            this.dataGridDeviceList.AllowUserToAddRows = false;
+            this.dataGridDeviceList.AllowUserToDeleteRows = false;
+            this.dataGridDeviceList.AllowUserToOrderColumns = true;
             this.dataGridDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -483,7 +486,6 @@
             this.dataGridDeviceList.TabIndex = 7;
             this.dataGridDeviceList.Visible = false;
             this.dataGridDeviceList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDeviceList_CellDoubleClick);
-            this.dataGridDeviceList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridDeviceList_MouseDoubleClick);
             // 
             // areaSelectionToolStripMenuItem
             // 
@@ -549,7 +551,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DarkRed;
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::LPC_Network_Map.Properties.Resources._1stFloorWorkstations;
             this.pictureBox1.Location = new System.Drawing.Point(3, 2);

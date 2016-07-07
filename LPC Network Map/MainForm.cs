@@ -10,9 +10,11 @@ using System.Windows.Forms;
 using System.Xml;
 using System.IO;
 using System.Data.OleDb;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LPC_Network_Map
 {
+
     public partial class MainForm : Form
     {
         //variables
@@ -37,11 +39,6 @@ namespace LPC_Network_Map
             //Initialization
             InitializeComponent();
             loadDeviceData();
-
-            //Size MaxSize = new Size((int)(pictureBox1.Image.Size.Width * 1.25), (int)(pictureBox1.Image.Size.Height * 1.25));
-            //Size MinSize = new Size((int)(pictureBox1.Image.Size.Width * .5), (int)(pictureBox1.Image.Size.Height * .5));
-            //pictureBox1.MaximumSize = MaxSize;
-            //pictureBox1.MinimumSize = MinSize;
         }
 
 
@@ -51,6 +48,18 @@ namespace LPC_Network_Map
             VisibleArea = "1st Floor";
             firstFloorOfficeToolStripMenuItem.Checked = true;
             secondFloorOfficeToolStripMenuItem.Checked = false;
+            //clear fields
+            txtDeviceName.Clear();
+            txtUser.Clear();
+            txtMake.Clear();
+            txtModel.Clear();
+            txtType.Clear();
+            txtSerial.Clear();
+            txtDepartment.Clear();
+            txtOS.Clear();
+            txtProcessor.Clear();
+            txtMemory.Clear();
+            txtArchitecture.Clear();
         }
 
         private void secondFloorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,7 +68,18 @@ namespace LPC_Network_Map
             VisibleArea = "2nd Floor";
             firstFloorOfficeToolStripMenuItem.Checked = false;
             secondFloorOfficeToolStripMenuItem.Checked = true;
-
+            //clear fields
+            txtDeviceName.Clear();
+            txtUser.Clear();
+            txtMake.Clear();
+            txtModel.Clear();
+            txtType.Clear();
+            txtSerial.Clear();
+            txtDepartment.Clear();
+            txtOS.Clear();
+            txtProcessor.Clear();
+            txtMemory.Clear();
+            txtArchitecture.Clear();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -131,119 +151,24 @@ namespace LPC_Network_Map
             //repaint the picturebox
             pictureBox1.Refresh();
         }
-
-        //public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
-        //{
-        //    bool exists = File.Exists(filename); //File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
-
-        //    if (exists)
-        //    {
-        //        using (XmlTextReader xmlreader = new XmlTextReader(filename))
-        //        {
-        //            while (xmlreader.Read())
-        //            {
-        //                xmlreader.MoveToElement();
-        //                switch (xmlreader.Name)
-        //                {
-        //                    case "Room":
-        //                        {
-        //                            RoomInfo room = new RoomInfo();
-
-        //                            while (xmlreader.Read())
-        //                            {
-        //                                bool dobreak = false;
-        //                                xmlreader.MoveToElement();
-        //                                switch (xmlreader.Name)
-        //                                {
-        //                                    case "name":
-        //                                        room.name = xmlreader.ReadString();
-        //                                        break;
-        //                                    case "xcoordmin":
-        //                                        room.xcoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-        //                                        break;
-        //                                    case "xcoordmax":
-        //                                        room.xcoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-        //                                        break;
-        //                                    case "ycoordmin":
-        //                                        room.ycoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-        //                                        break;
-        //                                    case "ycoordmax":
-        //                                        room.ycoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
-        //                                        // populate list with this room once we have all of the info. This method requires the xml info to be in order, with ycoordmax being last
-        //                                        RoomList.Add(room);
-        //                                        break;
-        //                                }
-        //                                if (dobreak)
-        //                                    break;
-        //                            }
-        //                            string temp = xmlreader.ReadString();
-        //                        }
-        //                        break;
-
-        //                    default:
-        //                        if (xmlreader.Name == "") // line feeds
-        //                            break;
-        //                        break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+        
         private void deviceListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox1.Hide();
+            panel1.Hide();
             dataGridDeviceList.Show();
         }
 
         private void mapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox1.Show(); //823, 453
+            panel1.Show();
             dataGridDeviceList.Hide();
-        }
-
-        //load data from excel file into datagrid
-        void loadDeviceData ()
-        {
-            try
-            {
-                //first access file in resources and save it as a temp file
-                string sPath = Path.GetTempFileName();
-                File.WriteAllBytes(sPath, Properties.Resources.Workstation_Inventory);
-
-                String name = "DeviceList";
-
-                String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-                                sPath +
-                                //Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Workstation Inventory.xlsx" +
-                                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
-
-                OleDbConnection con = new OleDbConnection(constr);
-                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-                con.Open();
-
-                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-                DataTable data = new DataTable();
-                sda.Fill(data);
-                dataGridDeviceList.DataSource = data;
-            }
-            catch (Exception e) { MessageBox.Show("Error loading Workstation Inventory.xlsx: " + e.Message); }
-        }
-
-        private void dataGridDeviceList_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //int XCoord = Convert.ToInt16(dataGridDeviceList..ToString());
         }
 
         private void dataGridDeviceList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
-            float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
-
-
             int SelectedRow = e.RowIndex;
-            int XCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["XCoord"].Value) * ((double)pictureBox1.Width/(double)HorRes));
-            int YCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["YCoord"].Value) * ((double)pictureBox1.Height/(double)VerRes));
+            int XCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["XCoord"].Value));
+            int YCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["YCoord"].Value));
             Point DevicePoint = new Point(XCoordinate, YCoordinate);
             String Area = (dataGridDeviceList.Rows[SelectedRow].Cells["Area"].Value.ToString());
 
@@ -251,15 +176,13 @@ namespace LPC_Network_Map
             {
                 mapToolStripMenuItem.PerformClick();
                 firstFloorOfficeToolStripMenuItem.PerformClick();
-                Cursor.Position = pictureBox1.PointToScreen(DevicePoint);
-
+                pictureBox1.Cursor = new Cursor(Cursor.Current.Handle);
             }
             else if (Area == "2nd Floor")
             {
                 mapToolStripMenuItem.PerformClick();
                 secondFloorOfficeToolStripMenuItem.PerformClick();
-                pictureBox1.Cursor = new Cursor(Cursor.Current.Handle);
-                //Cursor.Position = new Point(XCoord, YCoord);
+                
             }
             else
             {
@@ -318,5 +241,97 @@ namespace LPC_Network_Map
                 }
             }
         }
+
+
+        //---------functions----------
+
+
+
+        //load data from excel file into datagrid
+        void loadDeviceData()
+        {
+            try
+            {
+                //first access file in resources and save it as a temp file
+                string sPath = Path.GetTempFileName();
+                File.WriteAllBytes(sPath, Properties.Resources.Workstation_Inventory);
+
+                String name = "DeviceList";
+
+                String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+                                sPath +
+                                //Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Workstation Inventory.xlsx" +
+                                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+
+                OleDbConnection con = new OleDbConnection(constr);
+                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+                con.Open();
+
+                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                DataTable data = new DataTable();
+                sda.Fill(data);
+                dataGridDeviceList.DataSource = data;
+            }
+            catch (Exception e) { MessageBox.Show("Error loading Workstation Inventory.xlsx: " + e.Message); }
+        }
+
+        //determine what room we are in
+        //public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
+        //{
+        //    bool exists = File.Exists(filename); //File.Exists(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + filename);
+
+        //    if (exists)
+        //    {
+        //        using (XmlTextReader xmlreader = new XmlTextReader(filename))
+        //        {
+        //            while (xmlreader.Read())
+        //            {
+        //                xmlreader.MoveToElement();
+        //                switch (xmlreader.Name)
+        //                {
+        //                    case "Room":
+        //                        {
+        //                            RoomInfo room = new RoomInfo();
+
+        //                            while (xmlreader.Read())
+        //                            {
+        //                                bool dobreak = false;
+        //                                xmlreader.MoveToElement();
+        //                                switch (xmlreader.Name)
+        //                                {
+        //                                    case "name":
+        //                                        room.name = xmlreader.ReadString();
+        //                                        break;
+        //                                    case "xcoordmin":
+        //                                        room.xcoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "xcoordmax":
+        //                                        room.xcoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "ycoordmin":
+        //                                        room.ycoordmin = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        break;
+        //                                    case "ycoordmax":
+        //                                        room.ycoordmax = float.Parse(xmlreader.ReadString(), new System.Globalization.CultureInfo("en-US"));
+        //                                        // populate list with this room once we have all of the info. This method requires the xml info to be in order, with ycoordmax being last
+        //                                        RoomList.Add(room);
+        //                                        break;
+        //                                }
+        //                                if (dobreak)
+        //                                    break;
+        //                            }
+        //                            string temp = xmlreader.ReadString();
+        //                        }
+        //                        break;
+
+        //                    default:
+        //                        if (xmlreader.Name == "") // line feeds
+        //                            break;
+        //                        break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
