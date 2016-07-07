@@ -38,10 +38,10 @@ namespace LPC_Network_Map
             InitializeComponent();
             loadDeviceData();
 
-            Size MaxSize = new Size((int)(pictureBox1.Image.Size.Width * 1.25), (int)(pictureBox1.Image.Size.Height * 1.25));
-            Size MinSize = new Size((int)(pictureBox1.Image.Size.Width * .5), (int)(pictureBox1.Image.Size.Height * .5));
-            pictureBox1.MaximumSize = MaxSize;
-            pictureBox1.MinimumSize = MinSize;
+            //Size MaxSize = new Size((int)(pictureBox1.Image.Size.Width * 1.25), (int)(pictureBox1.Image.Size.Height * 1.25));
+            //Size MinSize = new Size((int)(pictureBox1.Image.Size.Width * .5), (int)(pictureBox1.Image.Size.Height * .5));
+            //pictureBox1.MaximumSize = MaxSize;
+            //pictureBox1.MinimumSize = MinSize;
         }
 
 
@@ -67,8 +67,8 @@ namespace LPC_Network_Map
             //determine where cursor 
             float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
             float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
-            MapClickLocation = new Point(((int)(pictureBox1.PointToClient((Cursor.Position)).X * (HorRes / pictureBox1.Width))),
-                                          (int)(pictureBox1.PointToClient((Cursor.Position)).Y * (VerRes / pictureBox1.Height)));
+            MapClickLocation = new Point(((int)(pictureBox1.PointToClient((Cursor.Position)).X)), // * (HorRes / pictureBox1.Width))),
+                                          (int)(pictureBox1.PointToClient((Cursor.Position)).Y)); // * (VerRes / pictureBox1.Height)));
 
             toolStripStatusLabel.Text = MapClickLocation.ToString();
 
@@ -90,7 +90,7 @@ namespace LPC_Network_Map
                 int deviceYCoord = Convert.ToInt16(row.Cells["YCoord"].Value);
                 String deviceArea = Convert.ToString(row.Cells["Area"].Value);
 
-                int precisionConstant = 1; //this allows a margin of error for where the user clicks so it will still register click if it isn't EXACTLY on the device
+                int precisionConstant = 25; //this allows a margin of error for where the user clicks so it will still register click if it isn't EXACTLY on the device
 
                 if ((deviceXCoord >= MapClickLocation.X - precisionConstant &&  deviceXCoord <= MapClickLocation.X + precisionConstant) &&
                     (deviceYCoord >= MapClickLocation.Y - precisionConstant && deviceYCoord <= MapClickLocation.Y + precisionConstant) &&
@@ -269,40 +269,54 @@ namespace LPC_Network_Map
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            //int XCoord = 0;
-            //int YCoord = 0;
-            //if (txtDeviceName.Text != "")
-            //{
-            //    foreach (DataGridViewRow row in dataGridDeviceList.Rows)
-            //    {
-            //        if (txtDeviceName.Text == (row.Cells["Device Name"].Value).ToString())
-            //        {
-            //            //check if the serial numbers match. We do this because some devices may have the same name.
-            //            //We do not rely only on serial numbers because not all serial numbers are recorded.
-            //            if (txtSerial.Text != "" && txtSerial.Text == (row.Cells["Serial"].Value).ToString())
-            //            {
-            //                float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
-            //                float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
+            int XCoord = 0;
+            int YCoord = 0;
+            if (txtDeviceName.Text != "")
+            {
+                foreach (DataGridViewRow row in dataGridDeviceList.Rows)
+                {
+                    if (txtDeviceName.Text == (row.Cells["Device Name"].Value).ToString())
+                    {
+                        //below we check if the serial numbers match. We do this because some devices may have the same name.
+                        //We do not rely only on serial numbers because not all serial numbers are recorded.
+                        if (txtSerial.Text == "")
+                        {
+                            //don't have a recorded serial number so don't bother comparing it
+                            //we'll draw the rectangle here anyways
+                            //this would only cause problems if we had two machines with same name AND no recorded serial number
+                            float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
+                            float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
 
-            //                XCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["XCoord"].Value) * ((double)pictureBox1.Width / (double)HorRes));
-            //                YCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["Ycoord"].Value) * ((double)pictureBox1.Height / (double)VerRes));
+                            XCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["XCoord"].Value));
+                            YCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["Ycoord"].Value));
 
-            //                Rectangle ee = new Rectangle(XCoord - 10, YCoord - 10, 40, 40);
-            //                using (Pen pen = new Pen(Color.Yellow, 2))
-            //                {
-            //                    e.Graphics.DrawRectangle(pen, ee);
-            //                }
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-        }
+                            Rectangle ee = new Rectangle(XCoord - 22, YCoord - 22, 45, 45);
+                            using (Pen pen = new Pen(Color.Yellow, 2))
+                            {
+                                e.Graphics.DrawRectangle(pen, ee);
+                            }
+                            break;
+                        }
+                        else if(txtSerial.Text == (row.Cells["Serial"].Value).ToString())
+                        {
+                            //we do have a recorded serial number so we should check it
+                            //if it doesn't match we won't draw the rectangle
+                            float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
+                            float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
 
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            pictureBox1.Width = pictureBox1.Image.Width;
-            pictureBox1.Height = pictureBox1.Image.Height;
+                            XCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["XCoord"].Value));
+                            YCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["Ycoord"].Value));
+
+                            Rectangle ee = new Rectangle(XCoord - 20, YCoord - 20, 40, 40);
+                            using (Pen pen = new Pen(Color.Yellow, 2))
+                            {
+                                e.Graphics.DrawRectangle(pen, ee);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
