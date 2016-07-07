@@ -37,6 +37,11 @@ namespace LPC_Network_Map
             //Initialization
             InitializeComponent();
             loadDeviceData();
+
+            Size MaxSize = new Size((int)(pictureBox1.Image.Size.Width * 1.25), (int)(pictureBox1.Image.Size.Height * 1.25));
+            Size MinSize = new Size((int)(pictureBox1.Image.Size.Width * .5), (int)(pictureBox1.Image.Size.Height * .5));
+            pictureBox1.MaximumSize = MaxSize;
+            pictureBox1.MinimumSize = MinSize;
         }
 
 
@@ -59,11 +64,11 @@ namespace LPC_Network_Map
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //determine where cursor is
+            //determine where cursor 
             float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
             float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
-            MapClickLocation = new Point(((int)(pictureBox1.PointToClient(Cursor.Position).X * (HorRes / pictureBox1.Width))),
-                                          (int)(pictureBox1.PointToClient(Cursor.Position).Y * (VerRes / pictureBox1.Height)));
+            MapClickLocation = new Point(((int)(pictureBox1.PointToClient((Cursor.Position)).X * (HorRes / pictureBox1.Width))),
+                                          (int)(pictureBox1.PointToClient((Cursor.Position)).Y * (VerRes / pictureBox1.Height)));
 
             toolStripStatusLabel.Text = MapClickLocation.ToString();
 
@@ -85,7 +90,7 @@ namespace LPC_Network_Map
                 int deviceYCoord = Convert.ToInt16(row.Cells["YCoord"].Value);
                 String deviceArea = Convert.ToString(row.Cells["Area"].Value);
 
-                int precisionConstant = 2; //this allows a margin of error for where the user clicks so it will still register click if it isn't EXACTLY on the device
+                int precisionConstant = 1; //this allows a margin of error for where the user clicks so it will still register click if it isn't EXACTLY on the device
 
                 if ((deviceXCoord >= MapClickLocation.X - precisionConstant &&  deviceXCoord <= MapClickLocation.X + precisionConstant) &&
                     (deviceYCoord >= MapClickLocation.Y - precisionConstant && deviceYCoord <= MapClickLocation.Y + precisionConstant) &&
@@ -122,6 +127,9 @@ namespace LPC_Network_Map
                     txtArchitecture.Clear();
                 }
             }
+
+            //repaint the picturebox
+            pictureBox1.Refresh();
         }
 
         //public void xmlRoom(bool write, string filename = "LPC_Room_Computer_List.xml")
@@ -220,6 +228,81 @@ namespace LPC_Network_Map
                 dataGridDeviceList.DataSource = data;
             }
             catch (Exception e) { MessageBox.Show("Error loading Workstation Inventory.xlsx: " + e.Message); }
+        }
+
+        private void dataGridDeviceList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //int XCoord = Convert.ToInt16(dataGridDeviceList..ToString());
+        }
+
+        private void dataGridDeviceList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
+            float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
+
+
+            int SelectedRow = e.RowIndex;
+            int XCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["XCoord"].Value) * ((double)pictureBox1.Width/(double)HorRes));
+            int YCoordinate = Convert.ToInt16(Convert.ToDouble(dataGridDeviceList.Rows[SelectedRow].Cells["YCoord"].Value) * ((double)pictureBox1.Height/(double)VerRes));
+            Point DevicePoint = new Point(XCoordinate, YCoordinate);
+            String Area = (dataGridDeviceList.Rows[SelectedRow].Cells["Area"].Value.ToString());
+
+            if(Area == "1st Floor")
+            {
+                mapToolStripMenuItem.PerformClick();
+                firstFloorOfficeToolStripMenuItem.PerformClick();
+                Cursor.Position = pictureBox1.PointToScreen(DevicePoint);
+
+            }
+            else if (Area == "2nd Floor")
+            {
+                mapToolStripMenuItem.PerformClick();
+                secondFloorOfficeToolStripMenuItem.PerformClick();
+                pictureBox1.Cursor = new Cursor(Cursor.Current.Handle);
+                //Cursor.Position = new Point(XCoord, YCoord);
+            }
+            else
+            {
+                MessageBox.Show("Error: This device's location is unknown.");
+            }
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //int XCoord = 0;
+            //int YCoord = 0;
+            //if (txtDeviceName.Text != "")
+            //{
+            //    foreach (DataGridViewRow row in dataGridDeviceList.Rows)
+            //    {
+            //        if (txtDeviceName.Text == (row.Cells["Device Name"].Value).ToString())
+            //        {
+            //            //check if the serial numbers match. We do this because some devices may have the same name.
+            //            //We do not rely only on serial numbers because not all serial numbers are recorded.
+            //            if (txtSerial.Text != "" && txtSerial.Text == (row.Cells["Serial"].Value).ToString())
+            //            {
+            //                float HorRes = Properties.Resources._1stFloorWorkstations.HorizontalResolution;
+            //                float VerRes = Properties.Resources._1stFloorWorkstations.VerticalResolution;
+
+            //                XCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["XCoord"].Value) * ((double)pictureBox1.Width / (double)HorRes));
+            //                YCoord = Convert.ToInt16(Convert.ToDouble(row.Cells["Ycoord"].Value) * ((double)pictureBox1.Height / (double)VerRes));
+
+            //                Rectangle ee = new Rectangle(XCoord - 10, YCoord - 10, 40, 40);
+            //                using (Pen pen = new Pen(Color.Yellow, 2))
+            //                {
+            //                    e.Graphics.DrawRectangle(pen, ee);
+            //                }
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            pictureBox1.Width = pictureBox1.Image.Width;
+            pictureBox1.Height = pictureBox1.Image.Height;
         }
     }
 }

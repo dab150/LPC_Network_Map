@@ -53,6 +53,7 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.lblDeviceName = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusClickLocation = new System.Windows.Forms.ToolStripStatusLabel();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +74,6 @@
             this.printersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workstationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.optionPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -84,8 +84,7 @@
             // 
             // optionPanel
             // 
-            this.optionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.optionPanel.BackColor = System.Drawing.SystemColors.Control;
             this.optionPanel.Controls.Add(this.lblDeviceInfo);
             this.optionPanel.Controls.Add(this.txtArchitecture);
             this.optionPanel.Controls.Add(this.txtMemory);
@@ -109,9 +108,10 @@
             this.optionPanel.Controls.Add(this.lblMake);
             this.optionPanel.Controls.Add(this.lblUser);
             this.optionPanel.Controls.Add(this.lblDeviceName);
-            this.optionPanel.Location = new System.Drawing.Point(841, 12);
+            this.optionPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.optionPanel.Location = new System.Drawing.Point(853, 0);
             this.optionPanel.Name = "optionPanel";
-            this.optionPanel.Size = new System.Drawing.Size(303, 453);
+            this.optionPanel.Size = new System.Drawing.Size(303, 477);
             this.optionPanel.TabIndex = 3;
             // 
             // lblDeviceInfo
@@ -373,9 +373,14 @@
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 455);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1156, 22);
+            this.statusStrip.Size = new System.Drawing.Size(853, 22);
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // statusClickLocation
             // 
@@ -405,12 +410,14 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewToolStripMenuItem1,
             this.LocationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1156, 24);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -470,9 +477,11 @@
             this.dataGridDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDeviceList.Location = new System.Drawing.Point(12, 27);
             this.dataGridDeviceList.Name = "dataGridDeviceList";
-            this.dataGridDeviceList.Size = new System.Drawing.Size(823, 425);
+            this.dataGridDeviceList.Size = new System.Drawing.Size(1129, 425);
             this.dataGridDeviceList.TabIndex = 7;
             this.dataGridDeviceList.Visible = false;
+            this.dataGridDeviceList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDeviceList_CellDoubleClick);
+            this.dataGridDeviceList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridDeviceList_MouseDoubleClick);
             // 
             // areaSelectionToolStripMenuItem
             // 
@@ -526,25 +535,20 @@
             this.serversToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serversToolStripMenuItem.Text = "Servers";
             // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.DarkRed;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::LPC_Network_Map.Properties.Resources._1stFloorWorkstations;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(823, 453);
+            this.pictureBox1.Size = new System.Drawing.Size(853, 477);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // MainForm
             // 
@@ -554,11 +558,12 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.optionPanel);
             this.Controls.Add(this.dataGridDeviceList);
+            this.Controls.Add(this.optionPanel);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Network Map";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.optionPanel.ResumeLayout(false);
             this.optionPanel.PerformLayout();
             this.statusStrip.ResumeLayout(false);
@@ -580,7 +585,6 @@
         private System.Windows.Forms.ToolStripMenuItem mapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deviceListToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dataGridDeviceList;
         private System.Windows.Forms.Label lblArchitecture;
         private System.Windows.Forms.Label lblMemory;
@@ -620,6 +624,7 @@
         private System.Windows.Forms.ToolStripMenuItem firstFloorOfficeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem secondFloorOfficeToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
